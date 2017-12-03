@@ -143,7 +143,7 @@ class DeleteSinglePuppyTest(TestCase):
             reverse('get_delete_update_employee', kwargs={'pk': self.muffin.pk}))
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
-    def test_invalid_delete_puppy(self):
+    def test_invalid_delete_employee(self):
         response = client.delete(
             reverse('get_delete_update_employee', kwargs={'pk': 30}))
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
