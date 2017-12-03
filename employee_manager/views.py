@@ -1,23 +1,18 @@
-from django.shortcuts import render
-from django.http import HttpResponse, Http404
 from .models import ProfileEmployee
+from django.views.generic import ListView, DetailView
+
+class EmployeeList(ListView):
+    """
+    Employees List Class
+    """
+    queryset = ProfileEmployee.objects.order_by('name')
+    template_name = 'employee_manager/index.html'
 
 
-def index(request):
+class EmployeeDetail(DetailView):
     """
-    Employees List Function
-    """
-    employee_list = ProfileEmployee.objects.order_by('name')
-    context = {'employee_list': employee_list}
-    return render(request, 'employee_manager/index.html', context)
-
-def detail(request, ProfileEmployee_id):
-    """
-    Employee Detail Function, with a little test, in case of a employee that
+    Employee Detail Class, with a little test, in case of a employee that
     doesn't exist
     """
-    try:
-        employee = ProfileEmployee.objects.get(pk=ProfileEmployee_id)
-    except ProfileEmployee.DoesNotExist:
-        raise Http404("Employee does not exist")
-    return render(request, 'employee_manager/detail.html', {'employee': employee})
+    model = ProfileEmployee
+    template_name = 'employee_manager/detail.html'

@@ -9,8 +9,8 @@
 {% block article_content %}
     <div>
         <ul>
-        {% for employee in employee_list %}
-            <li>{{ employee }}</li>
+        {% for employee in object_list %}
+            <li>{{ employee.name }}</li>
         {% endfor %}
         </u/>
     </div>

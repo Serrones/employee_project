@@ -96,12 +96,10 @@ class UpdateSingleEmployeeTest(TestCase):
     """ Test module for updating an existing employee record """
 
     def setUp(self):
-        #self.casper = Profile_Employee.objects.create(
-        #    name='Casper', email='casper@email.com', department='Testes')
         self.muffin = ProfileEmployee.objects.create(
             name='Muffin', email='muffin@email.com', department='Testes')
-        self.muffin = ProfileEmployee.objects.update(
-            name='Muffy', email='muffy@email.com', department='Testes')
+        self.muffin.name = 'Muffy'
+        self.muffin.save()
         self.valid_payload = {
             'name': 'Muffy',
             'email': 'muffy@email.com',
